@@ -20,3 +20,9 @@ const locationServiceStack = new LocationServiceStack(app, locationServiceStackI
   ...baseProps,
   stackName: locationServiceStackId,
 }, buildConfig);
+
+const eventbridgeStackId = `${stackId}-event`;
+const eventbridgeStack = new NotificationStack(app, eventbridgeStackId, {
+  ...baseProps,
+  stackName: eventbridgeStackId,
+}, buildConfig);
