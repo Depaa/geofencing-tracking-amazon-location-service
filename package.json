@@ -23,7 +23,7 @@
     "cdk-destroy-prod": "cdk destroy --all -c config=prod --profile aws_profile"
   },
   "devDependencies": {
-    "@types/node": "^10.17.27",
+    "@types/node": "^10.17.60",
     "ts-node": "^9.1.1",
     "typescript": "~3.9.7"
   },

@@ -2,6 +2,8 @@ import { App, Environment, StackProps } from 'aws-cdk-lib';
 import { getConfig } from './lib/common/build-config';
 import { BuildConfig } from './lib/common/config.interface';
 import { Tags } from 'aws-cdk-lib';
+import { LocationServiceStack } from './stacks/location-service';
+import { NotificationStack } from './stacks/notification-target';
 
 const app = new App();
 
@@ -13,16 +15,8 @@ const env: Environment = { account: buildConfig.account, region: buildConfig.reg
 const stackId = `${buildConfig.environment}-${buildConfig.project}`;
 const baseProps: StackProps = { env }
 
-// const vpcStackId = `${stackId}-vpc`;
-// const vpcStack = new VPCStack(app, vpcStackId, {
-//   ...baseProps,
-//   stackName: vpcStackId,
-// }, buildConfig);
-
-
-// const albStackId = `${stackId}-alb`;
-// const albStack = new ALBStack(app, albStackId, {
-//   ...baseProps,
-//   stackName: albStackId,
-//   vpc: vpcStack.vpc,
-// }, buildConfig);
+const locationServiceStackId = `${stackId}-ls`;
+const locationServiceStack = new LocationServiceStack(app, locationServiceStackId, {
+  ...baseProps,
+  stackName: locationServiceStackId,
+}, buildConfig);
