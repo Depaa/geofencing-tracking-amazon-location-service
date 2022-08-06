@@ -1,14 +1,19 @@
-# Welcome to your CDK TypeScript project!
+# How to test:
 
-This is a blank project for TypeScript development with CDK.
+## Run npm run deploy-dev
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+### 1. Creates geofences collection
 
-## Useful commands
+### 2. Creates tracker
 
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `npm run test`    perform the jest unit tests
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
+### 3. Links tracker with geofences collection
+
+### 4. Creates sns topic
+
+### 5. Creates event rule which triggers sns topic
+
+## Run cli-commands.sh to create geofence
+
+#### Remember to update your aws cli
+
+## Clean everything running npm run destroy-dev
