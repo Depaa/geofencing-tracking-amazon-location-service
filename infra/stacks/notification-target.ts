@@ -1,7 +1,7 @@
 import { App, Duration, Stack, StackProps } from 'aws-cdk-lib';
 import { Code, Runtime, Function } from 'aws-cdk-lib/aws-lambda';
 import { Topic } from 'aws-cdk-lib/aws-sns';
-import { Effect, Policy, PolicyStatement } from 'aws-cdk-lib/aws-iam';
+import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { LambdaFunction } from 'aws-cdk-lib/aws-events-targets';
 import * as path from 'path';
 import { Rule } from 'aws-cdk-lib/aws-events';
@@ -58,14 +58,7 @@ export class NotificationStack extends Stack {
       actions: ['sns:Publish'],
       resources: [`arn:aws:sns:${region}:${account}:${this.snsTopic.topicName}`]
     });
-
-    this.lambdaFunction.role?.attachInlinePolicy(
-      new Policy(this, 'send-sns-notification', {
-        statements: [
-          sendNotificationPermission
-        ]
-      })
-    )
+    this.lambdaFunction.addToRolePolicy(sendNotificationPermission);
   }
 
   private createSNSTopic(name: string): Topic {
