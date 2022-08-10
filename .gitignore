@@ -10,3 +10,4 @@ cdk.out
 # Lambda js files
 !src/lambdas/*/*.js
 !infra/lambdas/*/*.js
+!test/**.js
