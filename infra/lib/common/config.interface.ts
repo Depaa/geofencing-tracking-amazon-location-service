@@ -1,3 +1,5 @@
+import { SubscriptionProtocol } from 'aws-cdk-lib/aws-sns';
+
 export interface BuildConfig {
   readonly account: string;
   readonly region: string;
@@ -5,16 +7,18 @@ export interface BuildConfig {
   readonly project: string;
   readonly version: string;
   readonly build: string;
-  
-  // readonly stacks: BuildStaks;
+  readonly stacks: BuildStaks;
 }
 
-// export interface BuildStaks {
-//   vpc: BuildVPCStack;
-// }
+export interface BuildStaks {
+  readonly notification: BuildNotificationStack;
+}
 
-// export interface BuildVPCStack {
-//   maxAzs: number;
-//   cidr: string;
-//   natGateways: number;
-// }
+export interface BuildNotificationStack {
+  readonly endpoints: EndpointObject[];
+}
+
+export interface EndpointObject {
+  readonly endpoint: string;
+  readonly protocol: SubscriptionProtocol;
+}

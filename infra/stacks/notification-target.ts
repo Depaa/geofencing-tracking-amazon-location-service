@@ -1,12 +1,13 @@
 import { App, Duration, Stack, StackProps } from 'aws-cdk-lib';
 import { Code, Runtime, Function } from 'aws-cdk-lib/aws-lambda';
-import { Topic } from 'aws-cdk-lib/aws-sns';
+import { Topic, Subscription, SubscriptionProtocol } from 'aws-cdk-lib/aws-sns';
 import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { LambdaFunction } from 'aws-cdk-lib/aws-events-targets';
 import * as path from 'path';
 import { Rule } from 'aws-cdk-lib/aws-events';
-import { BuildConfig } from '../lib/common/config.interface';
+import { BuildConfig, EndpointObject } from '../lib/common/config.interface';
 import { name } from '../lib/common/utils';
+
 export class NotificationStack extends Stack {
   private readonly lambdaFunction: Function;
   private readonly snsTopic: Topic;
@@ -18,6 +19,11 @@ export class NotificationStack extends Stack {
     this.lambdaFunction = this.createLambdaFunction(name(`${id}-enter-trigger`), buildConfig.account, buildConfig.region);
     this.createEventRule(name(`${id}-enter-rule`));
     this.createLambdaPermission(buildConfig.account, buildConfig.region);
+
+    const endpoints = buildConfig.stacks.notification.endpoints;
+    endpoints.forEach((endpoint, index) => {
+      this.subscribeToSNSTopic(name(`${id}-notification-endpoint-${index}`), endpoint);
+    })
   }
 
   private createEventRule(name: string): Rule {
@@ -64,6 +70,13 @@ export class NotificationStack extends Stack {
   private createSNSTopic(name: string): Topic {
     return new Topic(this, name, {
       topicName: `${name}`,
+    });
+  }
+
+  private subscribeToSNSTopic(name: string, endpoint: EndpointObject): void {
+    new Subscription(this, name, {
+      topic: this.snsTopic,
+      ...endpoint
     });
   }
 }
