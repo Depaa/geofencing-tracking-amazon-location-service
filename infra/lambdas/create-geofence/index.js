@@ -1,5 +1,5 @@
 const LocationService = require('aws-sdk/clients/location');
-const response = require('cfn-response');
+const response = require('cfn-response')
 const fs = require('fs/promises');
 
 const locationService = new LocationService();
