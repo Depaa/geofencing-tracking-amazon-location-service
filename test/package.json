@@ -1,5 +1,6 @@
 {
   "devDependencies": {
-    "aws-sdk": "^2.1191.0"
+    "@aws-sdk/client-location": "^3.170.0",
+    "aws-sdk": "^2.1215.0"
   }
 }
