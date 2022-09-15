@@ -21,30 +21,8 @@
       "account": "012345678901",
       "region": "eu-central-1",
       "environment": "dev",
-      "version": "0.0.1",
-      "build": "0",
-      "project": "geofencing-tracking-blog",
-      "stacks": {
-        "notification": {
-          "endpoints": [
-            {
-              "endpoint": "emailAddress",
-              "protocol": "email"
-            },
-            {
-              "endpoint": "phoneNumberWithPrefix",
-              "protocol": "sms"
-            }
-          ]
-        }
-      }
-    },
-    "qa": {
-      "account": "012345678901",
-      "region": "eu-central-1",
-      "environment": "qa",
-      "version": "0.0.1",
-      "build": "0",
+      "version": "1",
+      "build": "1",
       "project": "geofencing-tracking-blog",
       "stacks": {
         "notification": {
