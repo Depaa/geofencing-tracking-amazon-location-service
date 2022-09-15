@@ -1,6 +1,6 @@
 # How to test:
 
-## Run npm run deploy-dev
+## Run npm run deploy
 
 ### 1. Creates geofences collection
 
@@ -16,4 +16,4 @@
 
 #### Remember to update your aws cli
 
-## Clean everything running npm run destroy-dev
+## Clean everything running npm run destroy
