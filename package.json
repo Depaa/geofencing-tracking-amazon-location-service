@@ -7,20 +7,13 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "jest",
+    "test": "node test/send-locations.js",
     "cdk": "cdk",
-    "synth-dev": "cdk synth -c config=dev --profile aws_profile",
-    "synth-qa": "cdk synth -c config=qa --profile aws_profile",
-    "synth-prod": "cdk synth -c config=prod --profile aws_profile",
-    "diff-dev": "npm run build && cdk diff \"*\" -c config=dev --profile aws_profile",
-    "diff-qa": "npm run build && cdk diff \"*\" -c config=qa --profile aws_profile",
-    "diff-prod": "npm run build && cdk diff \"*\" -c config=prod --profile aws_profile",
-    "deploy-dev": "npm run build && cdk deploy \"*\" -c config=dev --profile aws_profile --require-approval=never  --progress=events",
-    "deploy-qa": "npm run build && cdk deploy \"*\" -c config=qa --profile aws_profile --require-approval=never  --progress=events",
-    "deploy-prod": "npm run build && cdk deploy \"*\" -c config=prod --profile aws_profile --require-approval=never  --progress=events",
-    "destroy-dev": "cdk destroy --all -c config=dev --profile aws_profile",
-    "destroy-qa": "cdk destroy --all -c config=qa --profile aws_profile",
-    "destroy-prod": "cdk destroy --all -c config=prod --profile aws_profile"
+    "bootstrap": "cdk bootstrap -c config=dev",
+    "synth": "cdk synth -c config=dev",
+    "diff": "npm run build && cdk diff \"*\" -c config=dev",
+    "deploy": "npm run build && cdk deploy \"*\" -c config=dev --require-approval=never  --progress=events",
+    "destroy": "cdk destroy --all -c config=dev"
   },
   "devDependencies": {
     "@types/node": "^10.17.60",
