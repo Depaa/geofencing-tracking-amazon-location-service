@@ -66,10 +66,12 @@ export class LocationServiceStack extends Stack {
   private createLambdaPermission(account: string, region: string): void {
     const putGeofencePermission = new PolicyStatement({
       effect: Effect.ALLOW,
-      actions: ['geo:*'],
+      actions: [
+        'geo:putGeofence',
+        'geo:BatchDeleteGeofence'
+      ],
       resources: [
-        // `arn:aws:geo:${region}:${account}:geofence-collection/${this.geofenceCollection.collectionName}`,
-        `arn:aws:geo:${region}:${account}:*`
+        `arn:aws:geo:${region}:${account}:geofence-collection/${this.geofenceCollection.collectionName}`
       ]
     });
     this.lambdaFunction.addToRolePolicy(putGeofencePermission);
